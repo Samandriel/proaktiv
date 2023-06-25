@@ -27,23 +27,23 @@ model TrackerGroups {
   userId    String     @db.Uuid
   createdAt DateTime   @default(now())
   updatedAt DateTime   @default(now()) @updatedAt
-  Tracker   Trackers[]
   user      Users      @relation(fields: [userId], references: [id])
+  Tracker   Trackers[]
 }
 
 model Todos {
-  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title       String
   description String?
-  completed   Boolean    @default(false)
-  priority    Int        @default(0)
-  eventId     String?    @unique @db.Uuid
-  userId      String     @db.Uuid
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @default(now()) @updatedAt
-  event       Events?    @relation(fields: [eventId], references: [id])
-  user        Users      @relation(fields: [userId], references: [id])
+  completed   Boolean      @default(false)
+  eventId     String?      @unique @db.Uuid
+  userId      String       @db.Uuid
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now()) @updatedAt
+  priority    TodoPriority @default(unset)
   TodoTag     TodoTags[]
+  event       Events?      @relation(fields: [eventId], references: [id])
+  user        Users        @relation(fields: [userId], references: [id])
 }
 
 model Notes {
@@ -56,21 +56,21 @@ model Notes {
   userId     String     @db.Uuid
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @default(now()) @updatedAt
-  user       Users      @relation(fields: [userId], references: [id])
   NoteTag    NoteTags[]
+  user       Users      @relation(fields: [userId], references: [id])
 }
 
 model Events {
-  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  recurrence   Boolean  @default(false)
-  start        DateTime
-  end          DateTime
-  interval     Int?
-  intervalUnit String?
-  reminder     Int?
-  reminderUnit String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now()) @updatedAt
+  id           String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  recurrence   Boolean          @default(false)
+  start        DateTime         @default(now())
+  end          DateTime         @default(now())
+  interval     Int              @default(0)
+  reminder     Int              @default(0)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @default(now()) @updatedAt
+  intervalUnit TimeIntervalUnit @default(unset)
+  reminderUnit TimeIntervalUnit @default(unset)
   Todo         Todos?
 }
 
@@ -109,10 +109,11 @@ model Users {
   password          String
   createdAt         DateTime             @default(now())
   updatedAt         DateTime             @default(now()) @updatedAt
+  role              UserRole             @default(user)
   Note              Notes[]
   Todo              Todos[]
-  Tracker           Trackers[]
   TrackerGroup      TrackerGroups[]
+  Tracker           Trackers[]
   OAuth             UserOAuths[]
   UserPasswordReset UserPasswordResets[]
   UserPreference    UserPreferences[]
@@ -129,6 +130,7 @@ model UserOAuths {
   providerUserId String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @default(now()) @updatedAt
+  roles          String[]
   User           Users    @relation(fields: [userId], references: [id])
 }
 
@@ -168,14 +170,55 @@ model UserPasswordResets {
 }
 
 model UserPreferences {
-  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId             String   @db.Uuid
-  theme              String   @default("light")
-  notesView          String   @default("list")
-  notesSort          String   @default("updated")
-  notesSortDirection String   @default("desc")
-  notesCustomSort    String[] @default([])
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @default(now()) @updatedAt
-  User               Users    @relation(fields: [userId], references: [id])
+  id                 String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId             String             @db.Uuid
+  theme              String             @default("light")
+  notesCustomSort    String[]           @default([])
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @default(now()) @updatedAt
+  notesView          NotesView          @default(grid)
+  notesSort          notesSort          @default(created)
+  notesSortDirection notesSortDirection @default(desc)
+  User               Users              @relation(fields: [userId], references: [id])
+}
+
+enum TodoPriority {
+  unset
+  low
+  medium
+  high
+  very_high
+}
+
+enum TimeIntervalUnit {
+  unset
+  minute
+  hour
+  day
+  week
+  month
+  year
+}
+
+enum UserRole {
+  admin
+  user
+}
+
+enum notesSortDirection {
+  asc
+  desc
+}
+
+enum notesSort {
+  created
+  updated
+  alphabetical
+  custom
+}
+
+enum NotesView {
+  list
+  grid
+  tile
 }

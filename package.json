@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev:db-migrate": "npx dotenv -e .env.local -- prisma migrate dev",
-    "dev:db-seed": "npx dotenv -e .env.local -- prisma db seed -- --environment development",
-    "dev:db-reset": "npx dotenv -e .env.local -- prisma migrate reset",
-    "dev:db-studio": "npx dotenv -e .env.local -- prisma studio",
-    "prod:db": "npx dotenv -e .env.production -- prisma migrate deploy"
+    "dev:db-migrate": "npx prisma migrate dev",
+    "dev:db-seed": "npx prisma db seed -- --environment development",
+    "db-reset": "npx prisma migrate reset",
+    "db-studio": "npx prisma studio",
+    "prod:db": "npx prisma migrate deploy"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
