@@ -7,60 +7,60 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Tracker {
-  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+model Trackers {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title          String
   trackerType    String[]
-  trackerGroupId String       @db.Uuid
-  dataLog        Json[]       @db.Json
+  trackerGroupId String?        @db.Uuid
+  dataLog        Json[]         @db.Json
   description    String?
-  userId         String       @db.Uuid
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @default(now()) @updatedAt
-  TrackerGroup   TrackerGroup @relation(fields: [trackerGroupId], references: [id])
-  user           User         @relation(fields: [userId], references: [id])
+  userId         String         @db.Uuid
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @default(now()) @updatedAt
+  TrackerGroup   TrackerGroups? @relation(fields: [trackerGroupId], references: [id])
+  user           Users          @relation(fields: [userId], references: [id])
 }
 
-model TrackerGroup {
-  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+model TrackerGroups {
+  id        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String
-  userId    String    @db.Uuid
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now()) @updatedAt
-  Tracker   Tracker[]
-  user      User      @relation(fields: [userId], references: [id])
+  userId    String     @db.Uuid
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  Tracker   Trackers[]
+  user      Users      @relation(fields: [userId], references: [id])
 }
 
-model Todo {
-  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+model Todos {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title       String
   description String?
-  completed   Boolean   @default(false)
-  priority    Int       @default(0)
-  eventId     String?   @unique @db.Uuid
-  userId      String    @db.Uuid
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now()) @updatedAt
-  event       Event?    @relation(fields: [eventId], references: [id])
-  user        User      @relation(fields: [userId], references: [id])
-  TodoTag     TodoTag[]
+  completed   Boolean    @default(false)
+  priority    Int        @default(0)
+  eventId     String?    @unique @db.Uuid
+  userId      String     @db.Uuid
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now()) @updatedAt
+  event       Events?    @relation(fields: [eventId], references: [id])
+  user        Users      @relation(fields: [userId], references: [id])
+  TodoTag     TodoTags[]
 }
 
-model Note {
-  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+model Notes {
+  id         String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title      String
   body       String?
-  pinned     Boolean   @default(false)
+  pinned     Boolean    @default(false)
   background String?
-  archived   Boolean   @default(false)
-  userId     String    @db.Uuid
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @default(now()) @updatedAt
-  user       User      @relation(fields: [userId], references: [id])
-  NoteTag    NoteTag[]
+  archived   Boolean    @default(false)
+  userId     String     @db.Uuid
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @default(now()) @updatedAt
+  user       Users      @relation(fields: [userId], references: [id])
+  NoteTag    NoteTags[]
 }
 
-model Event {
+model Events {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   recurrence   Boolean  @default(false)
   start        DateTime
@@ -71,56 +71,56 @@ model Event {
   reminderUnit String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now()) @updatedAt
-  Todo         Todo?
+  Todo         Todos?
 }
 
-model Tag {
-  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+model Tags {
+  id        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now()) @updatedAt
-  NoteTag   NoteTag[]
-  TodoTag   TodoTag[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  NoteTag   NoteTags[]
+  TodoTag   TodoTags[]
 }
 
-model TodoTag {
+model TodoTags {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   todoId    String   @db.Uuid
   tagId     String   @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-  Tag       Tag      @relation(fields: [tagId], references: [id])
-  Todo      Todo     @relation(fields: [todoId], references: [id])
+  Tag       Tags     @relation(fields: [tagId], references: [id])
+  Todo      Todos    @relation(fields: [todoId], references: [id])
 }
 
-model NoteTag {
+model NoteTags {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   noteId    String   @db.Uuid
   tagId     String   @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-  Note      Note     @relation(fields: [noteId], references: [id])
-  Tag       Tag      @relation(fields: [tagId], references: [id])
+  Note      Notes    @relation(fields: [noteId], references: [id])
+  Tag       Tags     @relation(fields: [tagId], references: [id])
 }
 
-model User {
-  id                String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email             String              @unique
+model Users {
+  id                String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email             String               @unique
   password          String
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @default(now()) @updatedAt
-  Note              Note[]
-  Todo              Todo[]
-  Tracker           Tracker[]
-  TrackerGroup      TrackerGroup[]
-  OAuth             UserOAuth[]
-  UserPasswordReset UserPasswordReset[]
-  UserPreference    UserPreference[]
-  UserProfile       UserProfile[]
-  UserSession       UserSession[]
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @default(now()) @updatedAt
+  Note              Notes[]
+  Todo              Todos[]
+  Tracker           Trackers[]
+  TrackerGroup      TrackerGroups[]
+  OAuth             UserOAuths[]
+  UserPasswordReset UserPasswordResets[]
+  UserPreference    UserPreferences[]
+  UserProfile       UserProfiles[]
+  UserSession       UserSessions[]
 }
 
-model UserOAuth {
+model UserOAuths {
   id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId         String   @db.Uuid
   accessToken    String   @unique
@@ -129,10 +129,10 @@ model UserOAuth {
   providerUserId String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @default(now()) @updatedAt
-  User           User     @relation(fields: [userId], references: [id])
+  User           Users    @relation(fields: [userId], references: [id])
 }
 
-model UserProfile {
+model UserProfiles {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   firstName String
   lastName  String
@@ -141,10 +141,10 @@ model UserProfile {
   userId    String   @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-  User      User     @relation(fields: [userId], references: [id])
+  User      Users    @relation(fields: [userId], references: [id])
 }
 
-model UserSession {
+model UserSessions {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   token     String   @unique
   userId    String   @db.Uuid
@@ -155,19 +155,19 @@ model UserSession {
   expiresAt DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-  User      User     @relation(fields: [userId], references: [id])
+  User      Users    @relation(fields: [userId], references: [id])
 }
 
-model UserPasswordReset {
+model UserPasswordResets {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   token     String   @unique @default(dbgenerated("gen_random_uuid()"))
   userId    String   @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-  User      User     @relation(fields: [userId], references: [id])
+  User      Users    @relation(fields: [userId], references: [id])
 }
 
-model UserPreference {
+model UserPreferences {
   id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId             String   @db.Uuid
   theme              String   @default("light")
@@ -177,5 +177,5 @@ model UserPreference {
   notesCustomSort    String[] @default([])
   createdAt          DateTime @default(now())
   updatedAt          DateTime @default(now()) @updatedAt
-  User               User     @relation(fields: [userId], references: [id])
+  User               Users    @relation(fields: [userId], references: [id])
 }

@@ -6,13 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "dev:db-migrate": "npx prisma migrate dev --name",
-    "dev:db-deploy": "npx prisma migrate deploy",
-    "dev:db-studio": "npx prisma studio"
+    "lint": "next lint"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^4.16.1",

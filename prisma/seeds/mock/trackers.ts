@@ -1,4 +1,3 @@
-
 export const trackers = [
   {
     title: 'Study Machine Learning',
@@ -20,9 +19,12 @@ export const trackers = [
         date: 1612310400000,
         value: 30,
         unit: 'Comptuer Vision',
-      }
+      },
     ],
     description: 'Learn about machine learning',
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     title: 'Practice the piano',
@@ -42,6 +44,9 @@ export const trackers = [
       },
     ],
     description: '',
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     title: 'Jump rope',
@@ -61,6 +66,9 @@ export const trackers = [
       },
     ],
     description: '',
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     title: 'Read a book',
@@ -78,6 +86,9 @@ export const trackers = [
       },
     ],
     description: '',
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     title: 'Meditate',
@@ -102,9 +113,12 @@ export const trackers = [
         date: 1612396800000,
         value: 60,
         unit: 'minutes',
-      }
+      },
     ],
     description: '',
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     title: 'Drink water',
@@ -127,6 +141,9 @@ export const trackers = [
       },
     ],
     description: '',
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     title: 'Check mailbox',
@@ -146,6 +163,9 @@ export const trackers = [
       },
     ],
     description: '',
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     title: 'Learn python',
@@ -168,5 +188,8 @@ export const trackers = [
       },
     ],
     description: 'For AI and ML projects',
-  }
+    userId: 'ac498efc-74f9-49d4-b667-3c947ba55174',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
 ];
