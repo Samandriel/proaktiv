@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,21 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ------------------ Tracker ------------------
 model Tracker {
   id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title          String
-  trackerType    String[] // time, counter, checkoff, text
+  trackerType    String[]
   trackerGroupId String       @db.Uuid
-  dataLog        Json[]       @db.Json // { date: DateTime, value: Int, unit: String, note: String }
+  dataLog        Json[]       @db.Json
   description    String?
-  eventId        String       @unique @db.Uuid
   userId         String       @db.Uuid
   createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  user           User         @relation(fields: [userId], references: [id])
-  event          Event        @relation(fields: [eventId], references: [id])
+  updatedAt      DateTime     @default(now()) @updatedAt
   TrackerGroup   TrackerGroup @relation(fields: [trackerGroupId], references: [id])
+  user           User         @relation(fields: [userId], references: [id])
 }
 
 model TrackerGroup {
@@ -32,9 +26,9 @@ model TrackerGroup {
   name      String
   userId    String    @db.Uuid
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  user      User      @relation(fields: [userId], references: [id])
+  updatedAt DateTime  @default(now()) @updatedAt
   Tracker   Tracker[]
+  user      User      @relation(fields: [userId], references: [id])
 }
 
 model Todo {
@@ -43,11 +37,11 @@ model Todo {
   description String?
   completed   Boolean   @default(false)
   priority    Int       @default(0)
-  eventId     String    @unique @db.Uuid
+  eventId     String?   @unique @db.Uuid
   userId      String    @db.Uuid
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  event       Event     @relation(fields: [eventId], references: [id])
+  updatedAt   DateTime  @default(now()) @updatedAt
+  event       Event?    @relation(fields: [eventId], references: [id])
   user        User      @relation(fields: [userId], references: [id])
   TodoTag     TodoTag[]
 }
@@ -57,11 +51,11 @@ model Note {
   title      String
   body       String?
   pinned     Boolean   @default(false)
-  background String? // hex code
+  background String?
   archived   Boolean   @default(false)
   userId     String    @db.Uuid
   createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  updatedAt  DateTime  @default(now()) @updatedAt
   user       User      @relation(fields: [userId], references: [id])
   NoteTag    NoteTag[]
 }
@@ -72,23 +66,21 @@ model Event {
   start        DateTime
   end          DateTime
   interval     Int?
-  intervalUnit String? // minute, hour, day, week, month, year
+  intervalUnit String?
   reminder     Int?
-  reminderUnit String? // minute, hour, day, week, month, year
+  reminderUnit String?
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  Tracker      Tracker?
+  updatedAt    DateTime @default(now()) @updatedAt
   Todo         Todo?
 }
 
-// ------------------ Tags ------------------
 model Tag {
   id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  TodoTag   TodoTag[]
+  updatedAt DateTime  @default(now()) @updatedAt
   NoteTag   NoteTag[]
+  TodoTag   TodoTag[]
 }
 
 model TodoTag {
@@ -96,9 +88,9 @@ model TodoTag {
   todoId    String   @db.Uuid
   tagId     String   @db.Uuid
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Todo      Todo     @relation(fields: [todoId], references: [id])
+  updatedAt DateTime @default(now()) @updatedAt
   Tag       Tag      @relation(fields: [tagId], references: [id])
+  Todo      Todo     @relation(fields: [todoId], references: [id])
 }
 
 model NoteTag {
@@ -106,27 +98,26 @@ model NoteTag {
   noteId    String   @db.Uuid
   tagId     String   @db.Uuid
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
   Note      Note     @relation(fields: [noteId], references: [id])
   Tag       Tag      @relation(fields: [tagId], references: [id])
 }
 
-// ------------------ User ------------------
 model User {
   id                String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email             String              @unique
-  password          String // bcrypt hashed
+  password          String
   createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
+  updatedAt         DateTime            @default(now()) @updatedAt
   Note              Note[]
   Todo              Todo[]
   Tracker           Tracker[]
   TrackerGroup      TrackerGroup[]
-  UserSession       UserSession[]
-  UserPasswordReset UserPasswordReset[]
-  UserProfile       UserProfile[]
   OAuth             UserOAuth[]
+  UserPasswordReset UserPasswordReset[]
   UserPreference    UserPreference[]
+  UserProfile       UserProfile[]
+  UserSession       UserSession[]
 }
 
 model UserOAuth {
@@ -137,7 +128,7 @@ model UserOAuth {
   provider       String
   providerUserId String
   createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  updatedAt      DateTime @default(now()) @updatedAt
   User           User     @relation(fields: [userId], references: [id])
 }
 
@@ -149,7 +140,7 @@ model UserProfile {
   avatar    String?
   userId    String   @db.Uuid
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
   User      User     @relation(fields: [userId], references: [id])
 }
 
@@ -158,12 +149,12 @@ model UserSession {
   token     String   @unique
   userId    String   @db.Uuid
   ipAddress String
-  platform  String // mac, windows, linux, ios, android
-  browser   String // chrome, safari, firefox, edge, ie, opera, application, api, unknown
+  platform  String
+  browser   String
   userAgent String
   expiresAt DateTime
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
   User      User     @relation(fields: [userId], references: [id])
 }
 
@@ -172,7 +163,7 @@ model UserPasswordReset {
   token     String   @unique @default(dbgenerated("gen_random_uuid()"))
   userId    String   @db.Uuid
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
   User      User     @relation(fields: [userId], references: [id])
 }
 
@@ -180,11 +171,11 @@ model UserPreference {
   id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId             String   @db.Uuid
   theme              String   @default("light")
-  notesView          String   @default("list") // list, grid
-  notesSort          String   @default("updated") // created, updated, title
-  notesSortDirection String   @default("desc") // asc, desc
-  notesCustomSort    String[] @default([]) // note ids
+  notesView          String   @default("list")
+  notesSort          String   @default("updated")
+  notesSortDirection String   @default("desc")
+  notesCustomSort    String[] @default([])
   createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  updatedAt          DateTime @default(now()) @updatedAt
   User               User     @relation(fields: [userId], references: [id])
 }

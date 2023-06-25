@@ -11,6 +11,9 @@
     "dev:db-deploy": "npx prisma migrate deploy",
     "dev:db-studio": "npx prisma studio"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^4.16.1",
     "@types/react": "18.2.14",
