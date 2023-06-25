@@ -1,0 +1,191 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ------------------ Tracker ------------------
+model Tracker {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title          String
+  trackerType    String[] // time, counter, checkoff, text
+  trackerGroupId String       @db.Uuid
+  dataLog        Json[]       @db.Json // { date: DateTime, value: Int, unit: String, note: String }
+  description    String?
+  event          Event        @relation(fields: [eventId], references: [id])
+  eventId        String       @unique @db.Uuid
+  user           User         @relation(fields: [userId], references: [id])
+  userId         String       @db.Uuid
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  TrackerGroup   TrackerGroup @relation(fields: [trackerGroupId], references: [id])
+}
+
+model TrackerGroup {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String    @db.Uuid
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Tracker   Tracker[]
+}
+
+model Todo {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String
+  description String?
+  completed   Boolean   @default(false)
+  priority    Int       @default(0)
+  event       Event     @relation(fields: [eventId], references: [id])
+  eventId     String    @unique @db.Uuid
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @db.Uuid
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  TodoTag     TodoTag[]
+}
+
+model Note {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title      String
+  body       String?
+  pinned     Boolean   @default(false)
+  background String? // hex code
+  archived   Boolean   @default(false)
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String    @db.Uuid
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  // noteType  String[] // text, markdown, code
+  NoteTag    NoteTag[]
+}
+
+model Event {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  recurrence   Boolean  @default(false)
+  start        DateTime
+  end          DateTime
+  interval     Int?
+  intervalUnit String? // minute, hour, day, week, month, year
+  reminder     Int?
+  reminderUnit String? // minute, hour, day, week, month, year
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  Tracker      Tracker?
+  Todo         Todo?
+}
+
+// ------------------ Tags ------------------
+model Tag {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  TodoTag   TodoTag[]
+  NoteTag   NoteTag[]
+}
+
+model TodoTag {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  todoId    String   @db.Uuid
+  tagId     String   @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Todo      Todo     @relation(fields: [todoId], references: [id])
+  Tag       Tag      @relation(fields: [tagId], references: [id])
+}
+
+model NoteTag {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  noteId    String   @db.Uuid
+  tagId     String   @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Note      Note     @relation(fields: [noteId], references: [id])
+  Tag       Tag      @relation(fields: [tagId], references: [id])
+}
+
+// ------------------ User ------------------
+model User {
+  id                String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email             String              @unique
+  password          String // bcrypt hashed
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  Note              Note[]
+  Todo              Todo[]
+  Tracker           Tracker[]
+  TrackerGroup      TrackerGroup[]
+  UserSession       UserSession[]
+  UserPasswordReset UserPasswordReset[]
+  UserProfile       UserProfile[]
+  OAuth             UserOAuth[]
+  UserPreference    UserPreference[]
+}
+
+model UserOAuth {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId         String   @db.Uuid
+  accessToken    String   @unique
+  refreshToken   String   @unique
+  provider       String
+  providerUserId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  User           User     @relation(fields: [userId], references: [id])
+}
+
+model UserProfile {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  firstName String
+  lastName  String
+  bio       String?
+  avatar    String?
+  userId    String   @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model UserSession {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  token     String   @unique
+  userId    String   @db.Uuid
+  ipAddress String
+  platform  String // mac, windows, linux, ios, android
+  browser   String // chrome, safari, firefox, edge, ie, opera, application, api, unknown
+  userAgent String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model UserPasswordReset {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  token     String   @unique @default(dbgenerated("gen_random_uuid()"))
+  userId    String   @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model UserPreference {
+  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId             String   @db.Uuid
+  theme              String   @default("light")
+  notesView          String   @default("list") // list, grid
+  notesSort          String   @default("updated") // created, updated, title
+  notesSortDirection String   @default("desc") // asc, desc
+  notesCustomSort    String[] @default([]) // note ids
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  User               User     @relation(fields: [userId], references: [id])
+}
