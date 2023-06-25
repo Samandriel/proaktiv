@@ -1,10 +1,15 @@
+import { parseArgs } from 'node:util';
 import { todoList } from './seeds/mock/todos';
 import { trackers } from './seeds/mock/trackers';
 import { noteList } from './seeds/mock/notes';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-async function main() {
+const options = {
+  environment: { type: 'string' as const },
+};
+
+const seedDevelopmentData = async () => {
   console.log('Start seeding ...');
   for (const todo of todoList) {
     const todoListData = await prisma.todos.create({
@@ -31,6 +36,18 @@ async function main() {
     console.log(`Created note with id: ${noteListData.id}`);
   }
   console.log('Seeding finished.');
+};
+
+async function main() {
+  const {
+    values: { environment },
+  } = parseArgs({ options });
+
+  if (environment === 'development') {
+    seedDevelopmentData();
+  } else {
+    console.log('No data to seed');
+  }
 }
 
 main()

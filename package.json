@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:db-migrate": "npx dotenv -e .env.local -- prisma migrate dev",
+    "dev:db-seed": "npx dotenv -e .env.local -- prisma db seed -- --environment development",
+    "dev:db-reset": "npx dotenv -e .env.local -- prisma migrate reset",
+    "dev:db-studio": "npx dotenv -e .env.local -- prisma studio",
+    "prod:db": "npx dotenv -e .env.production -- prisma migrate deploy"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -27,6 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
+    "dotenv-cli": "^7.2.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8",
