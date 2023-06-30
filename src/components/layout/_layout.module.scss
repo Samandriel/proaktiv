@@ -1,0 +1,30 @@
+.appBar {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  &ItemsStart {
+    margin-left: auto;
+  }
+  &Items {
+    display: flex;
+  }
+  &ItemsEnd {
+    margin-left: auto;
+  }
+}
+
+.appLeftSidebar {
+  padding-top: 1rem;
+  &MenuItem {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    &Icon {
+      margin-right: 1rem;
+    }
+  }
+}
