@@ -1,11 +1,5 @@
 import './globals.scss';
-import { Noto_Sans } from 'next/font/google';
-import AppTheme from '@/app/app-theme';
-const NotoSans = Noto_Sans({
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-});
+import Base from '@/app/base';
 
 export const metadata = {
   title: 'ProAktiv',
@@ -19,8 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={NotoSans.className}>
-        <AppTheme>{children}</AppTheme>
+      <body>
+        <Base>{children}</Base>
       </body>
     </html>
   );
