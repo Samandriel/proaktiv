@@ -1,0 +1,12 @@
+.heroWrapper {
+  /* background: #f5f5f5; */
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.heroTextWrapper {
+  width: 50%;
+}
