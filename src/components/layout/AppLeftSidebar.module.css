@@ -1,0 +1,15 @@
+.appLeftSidebar {
+  padding-top: 1rem;
+}
+.appLeftSidebarMenuItem {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+.appLeftSidebarMenuItemIcon {
+  margin-right: 1rem;
+}
