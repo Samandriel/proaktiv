@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { Navbar, rem } from '@mantine/core';
 import Link from 'next/link';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 const menuItems = [
   { label: 'Home', icon: 'bx:bx-home', link: '/' },
