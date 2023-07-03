@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { Button, List, ThemeIcon } from '@mantine/core';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 const heroImage = '/hero.svg';
 

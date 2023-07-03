@@ -1,4 +1,4 @@
-import './globals.scss';
+import '@/assets/styles/main.scss';
 import Base from '@/app/base';
 
 export const metadata = {

@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import styles from './styles.module.scss';
+import styles from './AppBar.module.scss';
 
 import {
   Avatar,
