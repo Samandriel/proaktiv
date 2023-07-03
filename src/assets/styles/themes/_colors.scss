@@ -1,0 +1,110 @@
+:root {
+  --color-primary-darker: hsl(262, 83%, 58%);
+  --color-primary-dark: hsl(258, 90%, 66%);
+  --color-primary: hsl(255, 92%, 76%);
+  --color-primary-light: hsl(252, 95%, 85%);
+  --color-primary-lighter: hsl(251, 95%, 92%);
+  --color-primary-lightest: hsl(251, 91%, 95%);
+  --color-primary-faded: hsl(250, 100%, 98%);
+
+  --color-secondary-darker: hsl(200, 98%, 39%);
+  --color-secondary-dark: hsl(199, 89%, 48%);
+  --color-secondary: hsl(198, 93%, 60%);
+  --color-secondary-light: hsl(199, 95%, 74%);
+  --color-secondary-lighter: hsl(201, 94%, 86%);
+  --color-secondary-lightest: hsl(204, 94%, 94%);
+  --color-secondary-faded: hsl(204, 100%, 97%);
+
+  --color-tertiary-darker: hsl(161, 94%, 30%);
+  --color-tertiary-dark: hsl(160, 84%, 39%);
+  --color-tertiary: hsl(158, 64%, 52%);
+  --color-tertiary-light: hsl(156, 72%, 67%);
+  --color-tertiary-lighter: hsl(152, 76%, 80%);
+  --color-tertiary-lightest: hsl(149, 80%, 90%);
+  --color-tertiary-faded: hsl(152, 81%, 96%);
+
+  --color-quaternary-darker: hsl(347, 77%, 50%);
+  --color-quaternary-dark: hsl(350, 89%, 60%);
+  --color-quaternary: hsl(351, 95%, 71%);
+  --color-quaternary-light: hsl(353, 96%, 82%);
+  --color-quaternary-lighter: hsl(353, 96%, 90%);
+  --color-quaternary-lightest: hsl(356, 100%, 95%);
+  --color-quaternary-faded: hsl(356, 100%, 97%);
+
+  --color-quinary-darker: hsl(32, 95%, 44%);
+  --color-quinary-dark: hsl(38, 92%, 50%);
+  --color-quinary: hsl(43, 96%, 56%);
+  --color-quinary-light: hsl(46, 97%, 65%);
+  --color-quinary-lighter: hsl(48, 97%, 77%);
+  --color-quinary-lightest: hsl(48, 96%, 89%);
+  --color-quinary-faded: hsl(48, 100%, 96%);
+
+  --color-success-dark: hsl(142, 76%, 36%);
+  --color-success: hsl(142, 71%, 45%);
+  --color-success-light: hsl(142, 77%, 73%);
+  --color-success-lightest: hsl(141, 84%, 93%);
+
+  --color-info-dark: hsl(221, 83%, 53%);
+  --color-info: hsl(217, 91%, 60%);
+  --color-info-light: hsl(212, 96%, 78%);
+  --color-info-lightest: hsl(214, 95%, 93%);
+
+  --color-warning-dark: hsl(41, 96%, 40%);
+  --color-warning: hsl(45, 93%, 47%);
+  --color-warning-light: hsl(50, 98%, 64%);
+  --color-warning-lightest: hsl(55, 97%, 88%);
+
+  --color-alert-dark: hsl(0, 72%, 51%);
+  --color-alert: hsl(0, 84%, 60%);
+  --color-alert-light: hsl(0, 94%, 82%);
+  --color-alert-lightest: hsl(0, 93%, 94%);
+
+  --color-grey-black: hsl(240, 21%, 10%);
+  --color-grey-darkest: hsl(237, 21%, 19%);
+  --color-grey-darker: hsl(237, 14%, 27%);
+  --color-grey-dark: hsl(237, 10%, 39%);
+  --color-grey-darkish: hsl(243, 9%, 58%);
+  --color-grey: hsl(243, 13%, 70%);
+  --color-grey-light: hsl(244, 19%, 83%);
+  --color-grey-lighter: hsl(244, 35%, 92%);
+  --color-grey-lightest: hsl(250, 30%, 96%);
+  --color-grey-white: hsl(240, 11%, 98%);
+
+  --color-gradient-primary: linear-gradient(135deg, hsl(258, 90%, 66%) 0%, hsl(292, 84%, 61%) 100%);
+  --color-gradient-secondary: linear-gradient(135deg, hsl(199, 89%, 48%) 0%, hsl(239, 84%, 67%) 100%);
+  --color-gradient-tertiary: linear-gradient(135deg, hsl(160, 84%, 39%) 0%, hsl(84, 81%, 44%) 100%);
+  --color-gradient-quaternary: linear-gradient(135deg, hsl(350, 89%, 60%) 0%, hsl(292, 84%, 61%) 100%);
+  --color-gradient-quinary: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(0, 84%, 60%) 100%, hsl(0, 84%, 60%) 100%);
+}
+
+:root[class~="light"] {
+  --shadow-inset: 0px 4px 8px 0px rgba(96, 97, 112, 0.16) inset;
+  --shadow-none: none;
+  --shadow-min: 0px 1px 2px 0px rgba(96, 97, 112, 0.16);
+  --shadow-small: 0px 2px 4px 0px rgba(96, 97, 112, 0.16);
+  --shadow-medium: 0px 4px 8px 0px rgba(96, 97, 112, 0.16);
+  --shadow-large: 0px 16px 32px 0px rgba(96, 97, 112, 0.16);
+  --shadow-xlarge: 0px 16px 32px 0px rgba(96, 97, 112, 0.16);
+  --shadow-max: 0px 32px 64px 0px rgba(96, 97, 112, 0.16);
+}
+
+:root[class~="dark"] {
+  --shadow-inset: 0px 4px 8px 0px rgba(0, 0, 0, 0.32) inset;
+  --shadow-none: none;
+  --shadow-min: 0px 1px 2px 0px rgba(0, 0, 0, 0.32);
+  --shadow-small: 0px 1px 2px 0px rgba(0, 0, 0, 0.32);
+  --shadow-medium: 0px 4px 8px 0px rgba(0, 0, 0, 0.32);
+  --shadow-large: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+  --shadow-xlarge: 0px 16px 32px 0px rgba(0, 0, 0, 0.32);
+  --shadow-max: 0px 32px 64px 0px rgba(0, 0, 0, 0.32);
+}
+
+@layer base {
+  :root {
+    --color-hsl-primary: 255deg, 92%, 76%;
+    --color-hsl-secondary: 198deg, 93%, 60%;
+    --color-hsl-tertiary: 158deg, 64%, 52%;
+    --color-hsl-quaternary: 351deg, 95%, 71%;
+    --color-hsl-quinary: 43deg, 96%, 56%;
+  }
+}
