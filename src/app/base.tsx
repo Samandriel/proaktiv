@@ -7,23 +7,23 @@ import {
 } from '@mantine/core';
 import { usePreferencesStore } from '@/stores/preferences';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Noto_Sans } from 'next/font/google';
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient();
 
-// import { Noto_Sans } from 'next/font/google';
-// const NotoSans = Noto_Sans({
-//   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-//   style: ['normal', 'italic'],
-//   subsets: ['latin'],
-// });
+const notoSans = Noto_Sans({
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+});
 
 export default function AppTheme({ children }: { children: React.ReactNode }) {
   const { theme } = usePreferencesStore();
 
   const config: MantineThemeOverride = {
     colorScheme: theme as ColorScheme,
-    fontFamily: 'Noto Sans, Inter, sans-serif',
+    fontFamily: `${notoSans.style.fontFamily}, Inter, sans-serif`,
   };
 
   return (
