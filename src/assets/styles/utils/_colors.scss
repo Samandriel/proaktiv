@@ -92,6 +92,28 @@
     --color-hsl-grey-lighter: 244deg, 35%, 92%;
     --color-hsl-grey-lightest: 250deg, 30%, 96%;
     --color-hsl-grey-white: 240deg, 11%, 98%;
+
+    --color-hsl-shade-black: 240deg, 21%, 10%;
+    --color-hsl-shade-darkest: 237deg, 21%, 19%;
+    --color-hsl-shade-darker: 237deg, 14%, 27%;
+    --color-hsl-shade-dark: 237deg, 10%, 39%;
+    --color-hsl-shade-darkish: 243deg, 9%, 58%;
+    --color-hsl-shade: 243deg, 13%, 70%;
+    --color-hsl-shade-light: 244deg, 19%, 83%;
+    --color-hsl-shade-lighter: 244deg, 35%, 92%;
+    --color-hsl-shade-lightest: 250deg, 30%, 96%;
+    --color-hsl-shade-white: 240deg, 11%, 98%;
+
+    --color-gradient-primary: linear-gradient(135deg, hsl(258, 90%, 66%) 0%, hsl(292, 84%, 61%) 100%);
+    --color-gradient-secondary: linear-gradient(135deg, hsl(199, 89%, 48%) 0%, hsl(239, 84%, 67%) 100%);
+    --color-gradient-tertiary: linear-gradient(135deg, hsl(160, 84%, 39%) 0%, hsl(84, 81%, 44%) 100%);
+    --color-gradient-quaternary: linear-gradient(135deg, hsl(350, 89%, 60%) 0%, hsl(292, 84%, 61%) 100%);
+    --color-gradient-quinary: linear-gradient(
+      135deg,
+      hsl(38, 92%, 50%) 0%,
+      hsl(0, 84%, 60%) 100%,
+      hsl(0, 84%, 60%) 100%
+    );
   }
 }
 
@@ -178,20 +200,14 @@
   --color-alert-lighter: hsl(0, 94%, 82%);
   --color-alert-lightest: hsl(0, 96%, 89%);
 
-  --color-grey-black: hsl(240, 21%, 10%);
-  --color-grey-darkest: hsl(237, 21%, 19%);
-  --color-grey-darker: hsl(237, 14%, 27%);
-  --color-grey-dark: hsl(237, 10%, 39%);
-  --color-grey-darkish: hsl(243, 9%, 58%);
-  --color-grey: hsl(243, 13%, 70%);
-  --color-grey-light: hsl(244, 19%, 83%);
-  --color-grey-lighter: hsl(244, 35%, 92%);
-  --color-grey-lightest: hsl(250, 30%, 96%);
-  --color-grey-white: hsl(240, 11%, 98%);
-
-  --color-gradient-primary: linear-gradient(135deg, hsl(258, 90%, 66%) 0%, hsl(292, 84%, 61%) 100%);
-  --color-gradient-secondary: linear-gradient(135deg, hsl(199, 89%, 48%) 0%, hsl(239, 84%, 67%) 100%);
-  --color-gradient-tertiary: linear-gradient(135deg, hsl(160, 84%, 39%) 0%, hsl(84, 81%, 44%) 100%);
-  --color-gradient-quaternary: linear-gradient(135deg, hsl(350, 89%, 60%) 0%, hsl(292, 84%, 61%) 100%);
-  --color-gradient-quinary: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(0, 84%, 60%) 100%, hsl(0, 84%, 60%) 100%);
+  --color-shade-black: hsl(240, 21%, 10%);
+  --color-shade-darkest: hsl(237, 21%, 19%);
+  --color-shade-darker: hsl(237, 14%, 27%);
+  --color-shade-dark: hsl(237, 10%, 39%);
+  --color-shade-darkish: hsl(243, 9%, 58%);
+  --color-shade: hsl(243, 13%, 70%);
+  --color-shade-light: hsl(244, 19%, 83%);
+  --color-shade-lighter: hsl(244, 35%, 92%);
+  --color-shade-lightest: hsl(250, 30%, 96%);
+  --color-shade-white: hsl(240, 11%, 98%);
 }
