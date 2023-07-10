@@ -110,6 +110,7 @@ module.exports = {
         dark: 'hsl(var(--color-hsl-shade-dark) / <alpha-value>)',
         darkish: 'hsl(var(--color-hsl-shade-darkish) / <alpha-value>)',
         DEFAULT: 'hsl(var(--color-hsl-shade) / <alpha-value>)',
+        lightish: 'hsl(var(--color-hsl-shade-lightish) / <alpha-value>)',
         light: 'hsl(var(--color-hsl-shade-light) / <alpha-value>)',
         lighter: 'hsl(var(--color-hsl-shade-lighter) / <alpha-value>)',
         lightest: 'hsl(var(--color-hsl-shade-lightest) / <alpha-value>)',
