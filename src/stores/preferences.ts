@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface PreferencesStore {
   theme: string;
@@ -7,9 +8,23 @@ interface PreferencesStore {
   setLocale: (value: string) => void;
 }
 
-export const usePreferencesStore = create<PreferencesStore>((set) => ({
-  theme: 'light',
-  locale: 'us-en',
-  setTheme: (value) => set({ theme: value }),
-  setLocale: (value) => set({ locale: value }),
-}));
+export const usePreferencesStore = create(
+  persist<PreferencesStore>(
+    (set, get) => ({
+      theme: 'dark',
+      locale: 'us-en',
+      setTheme: (value: string) => {
+        const oldTheme = get().theme;
+        const htmlDocumentClass = document.documentElement.classList;
+        if (htmlDocumentClass.contains(oldTheme)) return;
+        htmlDocumentClass.remove(oldTheme);
+        htmlDocumentClass.add(value);
+        set({ theme: value });
+      },
+      setLocale: (value: string) => set({ locale: value }),
+    }),
+    {
+      name: 'preferences-storage',
+    }
+  )
+);
