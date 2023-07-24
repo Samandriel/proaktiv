@@ -28,6 +28,13 @@ export default function AppTheme({ children }: { children: React.ReactNode }) {
   const config: MantineThemeOverride = {
     colorScheme: theme as ColorScheme,
     fontFamily: `${notoSans.style.fontFamily}, Inter, sans-serif`,
+    globalStyles: (mantineStyle) => ({
+      body: {
+        backgroundColor: 'var(--color-body-background)',
+        color: 'var(--color-text)',
+        lineHeight: 'normal',
+      },
+    }),
   };
 
   return (
