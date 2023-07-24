@@ -7,4 +7,25 @@
   --shadow-large: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
   --shadow-xlarge: 0px 16px 32px 0px rgba(0, 0, 0, 0.32);
   --shadow-max: 0px 32px 64px 0px rgba(0, 0, 0, 0.32);
+
+  --color-body-background: var(--color-shade-black);
+  --color-text: var(--color-shade-lightish);
+  --color-highlighted-text: var(--color-shade-lightest);
+  --color-highlighted-background: var(--color-primary-darker);
+  --color-divider: var(--color-shade-darker);
+  --color-caret: var(--color-primary-darkish);
+
+  --color-input-background: var(--color-shade-black);
+  --color-input-text: var(--color-shade-lighter);
+  --color-input-placeholder: var(--color-shade-dark);
+  --color-input-border: var(--color-shade-dark);
+  --color-input-border-highlighted: var(--color-primary-dark);
+
+  --color-button-border-highlighted: var(--color-primary);
+
+  --color-menu-text: var(--color-shade-lightish);
+  --color-menu-text-highlighted: var(--color-shade-light);
+  --color-menu-background-highlighted: hsla(var(--color-hsl-shade-lightish), 0.1);
+
+  --divider: 1px solid var(--color-divider);
 }

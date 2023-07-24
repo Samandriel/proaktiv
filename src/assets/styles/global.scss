@@ -1,0 +1,29 @@
+.iconify {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.mantine-Input-icon,
+.mantine-ActionIcon-root {
+  color: var(--color-menu-text);
+}
+.mantine-Input-wrapper {
+  &:focus-within {
+    .mantine-Input-icon,
+    .mantine-ActionIcon-root {
+      color: var(--color-menu-text-highlighted);
+    }
+  }
+}
+.mantine-Input-input {
+  background-color: var(--color-input-background);
+  color: var(--color-input-text);
+  border-color: var(--color-input-border);
+  @apply transition;
+  &::placeholder {
+    color: var(--color-input-placeholder);
+  }
+  &:focus {
+    border-color: var(--color-input-border-highlighted);
+  }
+}
