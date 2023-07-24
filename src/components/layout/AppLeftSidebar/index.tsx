@@ -5,11 +5,11 @@ import Link from 'next/link';
 import styles from './AppLeftSidebar.module.scss';
 
 const menuItems = [
-  { label: 'Home', icon: 'bx:bx-home', link: '/' },
-  { label: 'Trackers', icon: 'bx:bx-bar-chart-alt-2', link: '/trackers' },
-  { label: 'Todo', icon: 'bx:bx-list-check', link: '/todos' },
-  { label: 'Notes', icon: 'bx:bx-notepad', link: '/notes' },
-  { label: 'Toolbox', icon: 'bx:bx-wrench', link: '/toolbox' },
+  { label: 'Home', icon: 'bx:bx-home', link: '/app' },
+  { label: 'Trackers', icon: 'bx:bx-bar-chart-alt-2', link: '/app/trackers' },
+  { label: 'Todo', icon: 'bx:bx-list-check', link: '/app/todos' },
+  { label: 'Notes', icon: 'bx:bx-notepad', link: '/app/notes' },
+  { label: 'Toolbox', icon: 'bx:bx-wrench', link: '/app/toolbox' },
 ];
 const userMenuItems: {
   id: string;
@@ -65,7 +65,7 @@ export const AppLeftSidebar = () => {
   });
 
   return (
-    <Navbar className={styles.appLeftSidebar} unstyled>
+    <Navbar width={{ base: rem(256) }} className={styles.appLeftSidebar}>
       <Navbar.Section>{}</Navbar.Section>
       <Navbar.Section grow>{menuList}</Navbar.Section>
       <Navbar.Section className={styles.menuFooter}>
