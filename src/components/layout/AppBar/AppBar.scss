@@ -1,0 +1,16 @@
+.app-bar__icon-button {
+  border: 1px solid var(--color-input-border);
+  width: 2.625rem;
+  height: 2.625rem;
+  @apply transition;
+  &:hover {
+    border-color: var(--color-button-border-highlighted);
+    .iconify {
+      color: var(--color-menu-text-highlighted);
+    }
+  }
+  .iconify {
+    color: var(--color-menu-text);
+    @apply transition;
+  }
+}

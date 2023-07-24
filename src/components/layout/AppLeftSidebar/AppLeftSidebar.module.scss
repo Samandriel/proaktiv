@@ -1,5 +1,7 @@
 .appLeftSidebar {
   padding-top: 1rem;
+  background-color: var(--color-shade-darkest);
+  @apply w-64;
 }
 .appLeftSidebarMenuItem {
   display: flex;
@@ -8,11 +10,21 @@
   transition: all 0.2s ease-in-out;
   font-weight: 600;
   text-decoration: none;
-  @apply text-gray-500;
+  color: var(--color-menu-text);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--color-menu-background-highlighted);
+    color: var(--color-menu-text-highlighted);
+    .appLeftSidebarMenuItemIcon {
+      color: var(--color-primary);
+    }
   }
 }
 .appLeftSidebarMenuItemIcon {
   margin-right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.menuFooter {
+  border-top: var(--divider);
+  padding: 1rem 0;
 }
