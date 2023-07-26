@@ -1,5 +1,10 @@
 {
   "cSpell.words": [
     "Mantine"
-  ]
+  ],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "page.tsx": "*.tsx, *.module.css, *.module.scss",
+    "package.json": "pnpm-lock.yaml, pnpm-debug.log"
+  },
 }
