@@ -1,31 +1,57 @@
-:root[class~="dark"] {
-  --shadow-inset: 0px 4px 8px 0px rgba(0, 0, 0, 0.32) inset;
-  --shadow-none: none;
-  --shadow-min: 0px 1px 2px 0px rgba(0, 0, 0, 0.32);
-  --shadow-small: 0px 1px 2px 0px rgba(0, 0, 0, 0.32);
-  --shadow-medium: 0px 4px 8px 0px rgba(0, 0, 0, 0.32);
-  --shadow-large: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-  --shadow-xlarge: 0px 16px 32px 0px rgba(0, 0, 0, 0.32);
-  --shadow-max: 0px 32px 64px 0px rgba(0, 0, 0, 0.32);
+@layer base {
+  :root[class~="dark"] {
+    --shadow-inset: 0px 4px 8px 0px rgba(0, 0, 0, 0.32) inset;
+    --shadow-none: none;
+    --shadow-min: 0px 1px 2px 0px rgba(0, 0, 0, 0.32);
+    --shadow-small: 0px 1px 2px 0px rgba(0, 0, 0, 0.32);
+    --shadow-medium: 0px 4px 8px 0px rgba(0, 0, 0, 0.32);
+    --shadow-large: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    --shadow-xlarge: 0px 16px 32px 0px rgba(0, 0, 0, 0.32);
+    --shadow-max: 0px 32px 64px 0px rgba(0, 0, 0, 0.32);
 
-  --color-body-background: var(--color-shade-black);
-  --color-text: var(--color-shade-lightish);
-  --color-highlighted-text: var(--color-shade-lightest);
-  --color-highlighted-background: var(--color-primary-darker);
-  --color-divider: var(--color-shade-darker);
-  --color-caret: var(--color-primary-darkish);
+    --color-hsl-shade-contrast-00: 229deg, 84%, 5%;
+    --color-hsl-shade-contrast-01: 222deg, 47%, 11%;
+    --color-hsl-shade-contrast-02: 217deg, 33%, 17%;
+    --color-hsl-shade-contrast-03: 215deg, 25%, 27%;
+    --color-hsl-shade-contrast-04: 215deg, 19%, 35%;
+    --color-hsl-shade-contrast-05: 215deg, 16%, 47%;
+    --color-hsl-shade-contrast-06: 215deg, 20%, 65%;
+    --color-hsl-shade-contrast-07: 213deg, 27%, 84%;
+    --color-hsl-shade-contrast-08: 214deg, 32%, 91%;
+    --color-hsl-shade-contrast-09: 210deg, 40%, 96%;
+    --color-hsl-shade-contrast-10: 210deg, 40%, 99%;
 
-  --color-input-background: var(--color-shade-black);
-  --color-input-text: var(--color-shade-lighter);
-  --color-input-placeholder: var(--color-shade-dark);
-  --color-input-border: var(--color-shade-dark);
-  --color-input-border-highlighted: var(--color-primary-dark);
+    --color-shade-contrast-00: var(--color-shade-black);
+    --color-shade-contrast-01: var(--color-shade-darkest);
+    --color-shade-contrast-02: var(--color-shade-darker);
+    --color-shade-contrast-03: var(--color-shade-dark);
+    --color-shade-contrast-04: var(--color-shade-darkish);
+    --color-shade-contrast-05: var(--color-shade);
+    --color-shade-contrast-06: var(--color-shade-lightish);
+    --color-shade-contrast-07: var(--color-shade-light);
+    --color-shade-contrast-08: var(--color-shade-lighter);
+    --color-shade-contrast-09: var(--color-shade-lightest);
+    --color-shade-contrast-10: var(--color-shade-white);
 
-  --color-button-border-highlighted: var(--color-primary);
+    --color-body-background: var(--color-shade-contrast-00);
+    --color-text: var(--color-shade-contrast-06);
+    --color-highlighted-text: var(--color-shade-contrast-09);
+    --color-highlighted-background: var(--color-primary-darker);
+    --color-divider: var(--color-shade-contrast-02);
+    --color-caret: var(--color-primary-darkish);
 
-  --color-menu-text: var(--color-shade-lightish);
-  --color-menu-text-highlighted: var(--color-shade-light);
-  --color-menu-background-highlighted: hsla(var(--color-hsl-shade-lightish), 0.1);
+    --color-input-background: var(--color-shade-contrast-00);
+    --color-input-text: var(--color-shade-contrast-08);
+    --color-input-placeholder: var(--color-shade-contrast-03);
+    --color-input-border: var(--color-shade-contrast-03);
+    --color-input-border-highlighted: var(--color-primary-dark);
 
-  --divider: 1px solid var(--color-divider);
+    --color-button-border-highlighted: var(--color-primary);
+
+    --color-menu-text: var(--color-shade-contrast-06);
+    --color-menu-text-highlighted: var(--color-shade-contrast-07);
+    --color-menu-background-highlighted: hsla(var(--color-hsl-shade-contrast-06), 0.1);
+
+    --divider: 1px solid var(--color-divider);
+  }
 }
