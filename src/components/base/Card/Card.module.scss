@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  width: 100%;
+  background-color: var(--color-shade-contrast-01);
+  padding: 1rem;
+}
+.cardHeader {
+  width: 100%;
+}
+.cardBody {
+  width: 100%;
+  flex-grow: 1;
+}
+.cardFooter {
+}

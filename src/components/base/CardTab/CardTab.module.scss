@@ -1,0 +1,33 @@
+.card {
+  background-color: var(--color-shade-contrast-01);
+  @apply flex flex-col shadow-sm rounded-xl;
+}
+
+.cardTab {
+  @apply hidden text-sm font-medium text-center divide-x divide-shade-contrast02 rounded-lg sm:flex;
+}
+.cardTabButtonWrapper {
+  border-bottom: var(--divider);
+  &:first-child {
+    .cardTabButton {
+      @apply rounded-tl-lg;
+    }
+  }
+  &:last-child {
+    .cardTabButton {
+      @apply rounded-tr-lg;
+    }
+  }
+  .cardTabButton {
+    @apply w-full inline-block p-4 focus:outline-none;
+  }
+}
+
+.cardTabButtonActive {
+  background-color: var(--color-shade-contrast-02);
+  color: var(--color-shade-contrast-07);
+}
+
+.cardTabContent {
+  @apply p-4 rounded-lg md:p-8;
+}
