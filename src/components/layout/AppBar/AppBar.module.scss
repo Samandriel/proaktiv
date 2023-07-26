@@ -1,8 +1,10 @@
 .appBar {
+  position: fixed;
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
-  background-color: var(--color-shade-darkest);
+  background-color: var(--color-shade-contrast-01);
   border-bottom: var(--divider);
   @apply h-16;
 }
