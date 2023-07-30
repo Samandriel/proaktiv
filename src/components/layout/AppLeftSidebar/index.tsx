@@ -7,7 +7,7 @@ import styles from './AppLeftSidebar.module.scss';
 const menuItems = [
   { label: 'Home', icon: 'bx:bx-home', link: '/app' },
   { label: 'Trackers', icon: 'bx:bx-bar-chart-alt-2', link: '/app/trackers' },
-  { label: 'Todo', icon: 'bx:bx-list-check', link: '/app/todos' },
+  { label: 'Tasks', icon: 'bx:bx-list-check', link: '/app/tasks' },
   { label: 'Notes', icon: 'bx:bx-notepad', link: '/app/notes' },
   { label: 'Toolbox', icon: 'bx:bx-wrench', link: '/app/toolbox' },
 ];
