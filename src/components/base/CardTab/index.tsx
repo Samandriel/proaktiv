@@ -3,7 +3,7 @@
 import { ReactNode, useState } from 'react';
 import styles from './CardTab.module.scss';
 
-type CardTabProps = {
+type BaseCardTabProps = {
   tabFullWidth?: boolean;
   tabData?: {
     id: string;
@@ -13,7 +13,10 @@ type CardTabProps = {
   }[];
 };
 
-export default function CardTab({ tabFullWidth, tabData }: CardTabProps) {
+export default function BaseCardTab({
+  tabFullWidth,
+  tabData,
+}: BaseCardTabProps) {
   const [selectedTab, setSelectedTab] = useState('stats');
 
   const cardTab = (
@@ -71,6 +74,6 @@ export default function CardTab({ tabFullWidth, tabData }: CardTabProps) {
   );
 }
 
-CardTab.defaultProps = {
+BaseCardTab.defaultProps = {
   tabFullWidth: true,
 };
