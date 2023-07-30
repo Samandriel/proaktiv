@@ -1,0 +1,187 @@
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  @apply transition-background;
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: hsla(var(--color-hsl-shade-contrast-02), 0.7);
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    display: flex;
+    flex-grow: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-shade-contrast-06);
+  }
+  &__checkbox {
+    position: relative;
+    margin-right: 1.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 2rem;
+    background: var(--color-shade-contrast-04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @apply transition;
+    &::before {
+      content: "";
+      background-color: var(--color-shade-contrast-00);
+      opacity: 0.85;
+      width: inherit;
+      height: inherit;
+      border: 1px solid transparent;
+      background-clip: padding-box;
+      border-radius: inherit;
+      position: absolute;
+      z-index: 1;
+      box-sizing: border-box;
+      @apply transition-colors;
+    }
+    &:hover {
+      background: var(--color-gradient-secondary);
+      transform: scale(1.1);
+      @apply transition-colors;
+    }
+    input {
+      width: 100%;
+      height: 100%;
+    }
+    .taskItem__checkIcon {
+      width: 1.25rem;
+      height: 1.25rem;
+      z-index: 2;
+      color: var(--color-shade-contrast-04);
+      filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.25));
+      @apply transition;
+    }
+    &.checked {
+      .taskItem__checkIcon {
+        color: var(--color-shade-contrast-08);
+      }
+    }
+  }
+  &__actionButton {
+    padding: 2px 0.2rem;
+    border: none;
+  }
+  &__dueDate,
+  &__taskRepeat,
+  &__reminder,
+  &__importance,
+  &__urgency,
+  &__priorityScore,
+  &__actionMenu {
+    display: block;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-shade-contrast-04);
+  }
+  &__dueDate,
+  &__taskRepeat,
+  &__reminder {
+    &.active {
+      background: var(--color-gradient-primary);
+    }
+  }
+  &__importance,
+  &__urgency {
+    &.low {
+      background: var(--color-info);
+    }
+    &.medium {
+      background: var(--color-warning);
+    }
+    &.high {
+      background: var(--color-alert);
+    }
+  }
+  &__dueDate {
+    mask-image: url("/img/icons/fluent-calendar-20-regular.svg");
+  }
+  &__taskRepeat {
+    mask-image: url("/img/icons/fluent-arrow-repeat-all-20-regular.svg");
+  }
+  &__reminder {
+    mask-image: url("/img/icons/fluent-clock-alarm-20-regular.svg");
+  }
+  &__importance {
+    mask-image: url("/img/icons/fluent-bookmark-20-filled.svg");
+  }
+  &__urgency {
+    mask-image: url("/img/icons/fluent-emoji-high-contrast-double-exclamation-mark.svg");
+  }
+  &__priorityScore {
+    background: var(--color-shade-contrast-06);
+    mask-image: url("/img/icons/tabler-hexagon-number-0.svg");
+    &.score1 {
+      background: var();
+      background: var(--color-gradient-secondary);
+      mask-image: url("/img/icons/tabler-hexagon-number-1.svg");
+    }
+    &.score2 {
+      background: var(--color-gradient-secondary);
+      mask-image: url("/img/icons/tabler-hexagon-number-2.svg");
+    }
+    &.score3 {
+      background: var(--color-gradient-tertiary);
+      mask-image: url("/img/icons/tabler-hexagon-number-3.svg");
+    }
+    &.score4 {
+      background: var(--color-gradient-quinary);
+      mask-image: url("/img/icons/tabler-hexagon-number-4.svg");
+    }
+    &.score5 {
+      background: var(--color-gradient-quaternary);
+      mask-image: url("/img/icons/tabler-hexagon-number-5.svg");
+    }
+  }
+  &__actionMenu {
+    background: var(--color-gradient-tertiary);
+    mask-image: url("/img/icons/tabler-dots-vertical.svg");
+  }
+  // &__actions {
+  //   display: flex;
+  //   align-items: center;
+  // }
+  // &__button {
+  //   margin-left: 10px;
+  // }
+  &.isEditing {
+    border: 5px solid #ccc;
+  }
+  &.isCompleted {
+    .taskItem__checkbox {
+      background: var(--color-gradient-tertiary);
+      @apply transition-colors;
+      &::before {
+        background: var(--color-gradient-tertiary);
+        opacity: 1;
+      }
+      &:hover {
+        background: var(--color-gradient-secondary);
+        &::before {
+          opacity: 0.75;
+        }
+        @apply transition-colors;
+        .taskItem__checkIcon {
+          color: var(--color-shade-contrast-10);
+        }
+      }
+    }
+  }
+  &.isArchived {
+    border-radius: 0;
+  }
+}

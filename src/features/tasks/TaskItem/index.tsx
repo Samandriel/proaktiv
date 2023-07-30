@@ -27,7 +27,10 @@ export default function TaskItem() {
 
   const CHECKBOX = (
     <button
-      className={styles.taskItem__checkbox}
+      className={`
+        ${styles.taskItem__checkbox}
+        ${isCompleted && styles.checked}
+      `}
       onClick={() => setIsCompleted(!isCompleted)}
     >
       <input
@@ -37,12 +40,11 @@ export default function TaskItem() {
         checked={isCompleted}
         onChange={() => {}}
       />
-      {isCompleted && (
-        <Icon
-          icon="fluent-emoji-high-contrast:check-mark"
-          className={styles.taskItem__checkIcon}
-        />
-      )}
+      {/* icon="fluent-emoji-high-contrast:check-mark" */}
+      <Icon
+        icon="fluent:checkmark-16-filled"
+        className={styles.taskItem__checkIcon}
+      />
     </button>
   );
 
@@ -60,13 +62,12 @@ export default function TaskItem() {
       <span
         className={`
         ${styles.taskItem__dueDate}
-        ${styles.default}
+        ${styles.active}
       `}
       />
     </button>
   );
 
-  const taskRepeatIcon = 'tabler:refresh';
   const TASK_REPEAT = (
     <button
       typeof="button"
@@ -77,68 +78,57 @@ export default function TaskItem() {
       <span
         className={`
         ${styles.taskItem__taskRepeat}
-        ${styles.default}
+        ${styles.active}
       `}
       />
     </button>
   );
-  let reminderIcon = 'fluent:clock-alarm-24-regular';
+
   const REMINDER = (
     <button
       typeof="button"
       className={`
         ${styles.taskItem__actionButton}
-        ${styles.taskItem__reminder}
     `}
     >
-      <Icon icon={reminderIcon} className={styles.taskItem__priorityIcon} />
+      <span
+        className={`
+        ${styles.taskItem__reminder}
+        ${styles.active}
+      `}
+      />
     </button>
   );
-  let importanceIcon = 'fluent:bookmark-off-24-regular';
-  switch (importanceLevel) {
-    case 1:
-      importanceIcon = 'fluent:bookmark-24-regular';
-      break;
-    case 2:
-      importanceIcon = 'fluent:bookmark-32-filled';
-      break;
-    case 3:
-      importanceIcon = 'fluent:bookmark-multiple-48-filled';
-      break;
-  }
+
   const IMPORTANCE = (
     <button
       typeof="button"
       className={`
       ${styles.taskItem__actionButton}
-      ${styles.taskItem__importance}
   `}
     >
-      <Icon icon={importanceIcon} className={styles.taskItem__priorityIcon} />
+      <span
+        className={`
+        ${styles.taskItem__importance}
+        ${styles.medium}
+      `}
+      />
     </button>
   );
 
-  let urgencyIcon = 'fluent:star-off-16-regular';
-  switch (urgencyLevel) {
-    case 1:
-      urgencyIcon = 'fluent:star-20-regular';
-      break;
-    case 2:
-      urgencyIcon = 'fluent:star-28-filled';
-      break;
-    case 3:
-      urgencyIcon = 'fluent:star-emphasis-24-filled';
-      break;
-  }
   const URGENCY = (
     <button
       typeof="button"
       className={`
       ${styles.taskItem__actionButton}
-      ${styles.taskItem__urgency}
   `}
     >
-      <Icon icon={urgencyIcon} className={styles.taskItem__urgency} />
+      <span
+        className={`
+        ${styles.taskItem__urgency}
+        ${styles.high}
+      `}
+      />
     </button>
   );
 
@@ -147,13 +137,13 @@ export default function TaskItem() {
       typeof="button"
       className={`
       ${styles.taskItem__actionButton}
-      ${styles.taskItem__priorityScore}
   `}
     >
-      <Icon
-        icon="tabler:hexagon-number-3"
-        className={styles.taskItem__priorityScoreIcon}
-        mode="mask"
+      <span
+        className={`
+        ${styles.taskItem__priorityScore}
+        ${styles.score1}
+      `}
       />
     </button>
   );
@@ -166,7 +156,11 @@ export default function TaskItem() {
       ${styles.taskItem__actionMenu}
   `}
     >
-      <Icon icon="fluent:more-vertical-24-filled" />
+      <span
+        className={`
+        ${styles.taskItem__actionMenu}
+      `}
+      />
     </button>
   );
   return (
